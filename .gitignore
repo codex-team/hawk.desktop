@@ -14,8 +14,7 @@ node_modules/
 
 # Compiled module
 .DS_Store
-dist/electron/*
-dist/web/*
+dist/
 build/*
 !build/icons
 
