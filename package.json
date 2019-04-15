@@ -6,7 +6,7 @@
   "main": "./src/main.js",
   "scripts": {
     "start": "electron .",
-    "update": "git submodule foreach git pull origin master && cd hawk.garage && yarn install && yarn build"
+    "update": "git submodule foreach git pull origin vue-config-addition && cd hawk.garage && git checkout vue-config-addition && yarn install && yarn build"
   },
   "devDependencies": {
     "electron": "^4.1.4"
