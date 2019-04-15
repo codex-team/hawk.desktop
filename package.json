@@ -5,7 +5,8 @@
   "license": "UNLICENSED",
   "main": "./src/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "update": "git submodule foreach git pull origin master && cd hawk.garage && yarn install && yarn build"
   },
   "devDependencies": {
     "electron": "^4.1.4"
