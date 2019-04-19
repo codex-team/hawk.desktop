@@ -6,7 +6,7 @@
   "main": "./src/main.js",
   "scripts": {
     "start": "electron .",
-    "submodule:build": "cd hawk.garage && git checkout vue-config-addition && yarn install && yarn build",
+    "submodule:build": "cd hawk.garage && git fetch && git checkout vue-config-addition && yarn install && yarn build",
     "submodule:update": "git submodule foreach git pull origin vue-config-addition",
     "submodule:prepare": "npm run submodule:update && npm run submodule:build"
   },
