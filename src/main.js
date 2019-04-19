@@ -19,7 +19,7 @@ function createWindow () {
     mainWindow.loadFile('hawk.garage/dist/index.html');
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -28,8 +28,6 @@ function createWindow () {
         // when you should delete the corresponding element.
         mainWindow = null
     })
-
-    mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
