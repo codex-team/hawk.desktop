@@ -7,8 +7,8 @@
   "scripts": {
     "start": "electron .",
     "submodule:init": "git submodule update --init --recursive",
-    "submodule:build": "cd hawk.garage && git checkout vue-config-addition && yarn install && yarn build",
-    "submodule:update": "git submodule foreach git pull origin vue-config-addition",
+    "submodule:build": "cd hawk.garage && yarn install && yarn build",
+    "submodule:update": "git submodule foreach git pull origin master",
     "submodule:prepare": "npm run submodule:init && npm run submodule:update && npm run submodule:build"
   },
   "devDependencies": {
