@@ -1,0 +1,3 @@
+[submodule "hawk.garage"]
+	path = hawk.garage
+	url = https://github.com/codex-team/hawk.garage.git

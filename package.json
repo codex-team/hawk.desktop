@@ -1,0 +1,17 @@
+{
+  "name": "hawk.desktop",
+  "version": "0.0.1",
+  "description": "Desktop version of hawk.garage",
+  "license": "UNLICENSED",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "submodule:init": "git submodule update --init --recursive",
+    "submodule:build": "cd hawk.garage && yarn install && yarn build",
+    "submodule:update": "git submodule foreach git pull origin master",
+    "submodule:prepare": "npm run submodule:init && npm run submodule:update && npm run submodule:build"
+  },
+  "devDependencies": {
+    "electron": "^4.1.4"
+  }
+}
