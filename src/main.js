@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, protocol } = require('electron');
+const path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -17,8 +18,22 @@ function createWindow() {
     }
   });
 
+  // Used for redirecting request to index.html and handle static assets
+  protocol.interceptFileProtocol('file', function (req, callback) {
+    let url = req.url.substr(7); // cut file://
+
+    if (!/^\/static/.test(url)) url = '/index.html';
+
+    // eslint-disable-next-line standard/no-callback-literal
+    callback({ path: path.normalize(path.join(__dirname, '../hawk.garage/dist', url)) });
+  }, function (error) {
+    if (error) {
+      console.error('Failed to register protocol');
+    }
+  });
+
   // Load the index.html of the app.
-  mainWindow.loadFile('hawk.garage/dist/index.html');
+  mainWindow.loadFile('/');
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
