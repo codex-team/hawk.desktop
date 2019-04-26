@@ -7,8 +7,8 @@
   "scripts": {
     "start": "electron .",
     "submodule:init": "git submodule update --init --recursive",
-    "submodule:build": "cross-env-shell VUE_APP_ELECTRON=true \"cd hawk.garage && yarn install && yarn build\"",
-    "submodule:update": "git submodule foreach git pull origin master",
+    "submodule:build": "cross-env-shell VUE_APP_ELECTRON=true \"cd hawk.garage && git checkout fix-blank-page && yarn install && yarn build\"",
+    "submodule:update": "git submodule foreach git pull origin fix-blank-page",
     "submodule:prepare": "yarn submodule:init && yarn submodule:update && yarn submodule:build",
     "lint": "eslint . --ext .js --fix"
   },
