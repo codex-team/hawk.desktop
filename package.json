@@ -9,7 +9,7 @@
     "submodule:init": "git submodule update --init --recursive",
     "submodule:build": "cd hawk.garage && yarn install && yarn build",
     "submodule:update": "git submodule foreach git pull origin master",
-    "submodule:prepare": "npm run submodule:init && npm run submodule:update && npm run submodule:build",
+    "submodule:prepare": "yarn submodule:init && yarn submodule:update && yarn submodule:build",
     "lint": "eslint . --ext .js --fix"
   },
   "devDependencies": {
