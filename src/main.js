@@ -26,7 +26,7 @@ function createWindow() {
 
     // eslint-disable-next-line standard/no-callback-literal
     callback({ path: path.normalize(path.join(__dirname, '../hawk.garage/dist', url)) });
-  }, function (error) {
+  }, (error) => {
     if (error) {
       console.error('Failed to register protocol');
     }
