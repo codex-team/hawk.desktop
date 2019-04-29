@@ -17,7 +17,7 @@ function createWindow() {
     }
   });
 
-  const registerProtocols = require('protocols');
+  const registerProtocols = require('./protocols');
 
   registerProtocols();
 
