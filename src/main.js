@@ -17,6 +17,7 @@ function createWindow() {
     }
   });
 
+  // Register protocols
   require('./protocols');
 
   // Load the index.html of the app.
