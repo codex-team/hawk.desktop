@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = () => {
   // Used for redirecting request to index.html and handle static assets
-  protocol.interceptFileProtocol('file', function (req, callback) {
+  protocol.interceptFileProtocol('file', (req, callback) => {
     let url = req.url.substr(7); // cut file://
 
     if (!/^\/static/.test(url)) url = '/index.html';
