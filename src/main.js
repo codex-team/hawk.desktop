@@ -17,8 +17,12 @@ function createWindow() {
     }
   });
 
+  const registerProtocols = require('protocols');
+
+  registerProtocols();
+
   // Load the index.html of the app.
-  mainWindow.loadFile('hawk.garage/dist/index.html');
+  mainWindow.loadFile('/');
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
