@@ -40,6 +40,12 @@
     },
     "files": [
       "**/*"
-    ]
+    ],
+    "linux": {
+      "target": "AppImage"
+    },
+    "win": {
+      "target": "nsis"
+    }
   }
 }
