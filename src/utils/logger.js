@@ -39,7 +39,7 @@ class Logger {
     console.log(this.logsDirPath);
 
     if (!fs.existsSync(this.logsDirPath)) {
-      fs.mkdirSync(this.logsDirPath);
+      fs.mkdirSync(this.logsDirPath, { recursive: true });
     }
   }
 
