@@ -1,6 +1,6 @@
 {
   "name": "hawk.desktop",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Desktop version of hawk.garage",
   "license": "UNLICENSED",
   "main": "./src/main.js",
@@ -18,9 +18,7 @@
     "electron": "^4.1.4",
     "electron-builder": "^22.10.5",
     "eslint": "^5.16.0",
-    "eslint-config-codex": "github:codex-team/eslint-config",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.5"
+    "eslint-config-codex": "github:codex-team/eslint-config"
   },
   "dependencies": {
     "electron-default-menu": "^1.0.2",

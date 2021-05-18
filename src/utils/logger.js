@@ -14,7 +14,6 @@ const fs = require('fs');
 const path = require('path');
 const winston = require('winston');
 const DailyRotateFile = require('winston-daily-rotate-file');
-const { app } = require('electron');
 const appData = require('./appData');
 
 /**
@@ -35,8 +34,6 @@ class Logger {
      * @type {string}
      */
     this.logsDirPath = path.join(appData.logsDir);
-
-    console.log(this.logsDirPath);
 
     if (!fs.existsSync(this.logsDirPath)) {
       fs.mkdirSync(this.logsDirPath, { recursive: true });
