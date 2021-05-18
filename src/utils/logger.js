@@ -1,7 +1,7 @@
 /**
  * Logger can save log to file in appData/logs dir
  *
- * @usage enable logger
+ * @example enable logger
  * global.logger = require('./utils/logger');
  *
  * @example logger.log('my log %s', variable);

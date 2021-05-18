@@ -14,7 +14,7 @@ module.exports = () => {
       url = '/index.html';
     }
 
-    // eslint-disable-next-line standard/no-callback-literal
+    // eslint-disable-next-line
     callback({ path: path.normalize(path.join(__dirname, '..', 'hawk.garage', 'dist', url)) });
   }, (error) => {
     if (error) {
