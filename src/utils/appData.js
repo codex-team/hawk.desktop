@@ -5,5 +5,5 @@ const appData = app.getPath('userData');
 
 module.exports = {
   appDataDir: appData,
-  logsDir: path.join(appData, 'logs')
+  logsDir: path.join(appData, 'logs'),
 };

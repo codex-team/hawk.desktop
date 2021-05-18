@@ -31,6 +31,7 @@ class Logger {
   constructor() {
     /**
      * Logs will be stored in the app-data/logs
+     *
      * @type {string}
      */
     this.logsDirPath = path.join(appData.logsDir);
@@ -49,7 +50,7 @@ class Logger {
       format: winston.format.combine(
         winston.format.errors({ stack: true }), // <-- use errors format
         winston.format.timestamp({
-          format: 'HH:mm:ss'
+          format: 'HH:mm:ss',
         }),
         winston.format.printf(info => `${info.timestamp} [${info.level}] ${info.message}` + (info.splat !== undefined ? `${info.splat}` : ' ') + (info.stack !== undefined ? `\n${info.stack}` : ''))
       ),
@@ -57,9 +58,9 @@ class Logger {
         new winston.transports.Console(),
         new DailyRotateFile({
           dirname: this.logsDirPath,
-          filename: '%DATE%.log'
-        })
-      ]
+          filename: '%DATE%.log',
+        }),
+      ],
     });
 
     return {
@@ -67,7 +68,7 @@ class Logger {
       debug: logger.debug.bind(logger),
       info: logger.info.bind(logger),
       warn: logger.warn.bind(logger),
-      error: logger.error.bind(logger)
+      error: logger.error.bind(logger),
     };
   }
 

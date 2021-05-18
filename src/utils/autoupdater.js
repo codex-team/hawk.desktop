@@ -23,7 +23,7 @@ autoUpdater.on('update-not-available', (updateInfo) => {
 });
 
 autoUpdater.on('download-progress', (progressInfo) => {
-  let logMessage = `speed ${progressInfo.bytesPerSecond} b/s; progress ${progressInfo.percent}%; downloaded ${progressInfo.transferred} out of ${progressInfo.total} bytes`;
+  const logMessage = `speed ${progressInfo.bytesPerSecond} b/s; progress ${progressInfo.percent}%; downloaded ${progressInfo.transferred} out of ${progressInfo.total} bytes`;
 
   log.log(logMessage);
 });

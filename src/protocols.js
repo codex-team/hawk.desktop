@@ -10,7 +10,9 @@ module.exports = () => {
     url = url.replace(path.parse(url).root, '');
 
     /** If no 'static' at the start of path then return index.html */
-    if (!/^static/.test(url)) url = '/index.html';
+    if (!/^static/.test(url)) {
+      url = '/index.html';
+    }
 
     // eslint-disable-next-line standard/no-callback-literal
     callback({ path: path.normalize(path.join(__dirname, '..', 'hawk.garage', 'dist', url)) });
