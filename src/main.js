@@ -14,8 +14,8 @@ function createWindow() {
     width: 1200,
     height: 800,
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+    },
   });
 
   const registerProtocols = require('./protocols');
@@ -57,9 +57,13 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit();
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
 });
 
 app.on('activate', function () {
-  if (mainWindow === null) createWindow();
+  if (mainWindow === null) {
+    createWindow();
+  }
 });

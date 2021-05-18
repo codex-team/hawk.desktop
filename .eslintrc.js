@@ -2,14 +2,14 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   extends: 'codex',
   globals: {
-    __static: true
+    __static: true,
   },
   rules: {
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
-  }
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+  },
 };
