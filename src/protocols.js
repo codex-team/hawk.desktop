@@ -4,12 +4,16 @@ const path = require('path');
 module.exports = () => {
   // Used for redirecting request to index.html and handle static assets
   protocol.interceptFileProtocol('file', (req, callback) => {
-    let url = req.url.substr(7); // cut file://
+    let url = req.url.substr(8); // cut file://
 
-    if (!/^\/static/.test(url)) url = '/index.html';
+    /** Remove path to magic root dir from url */
+    url = url.replace(path.parse(url).root, '');
+
+    /** If no 'static' at the start of path then return index.html */
+    if (!/^static/.test(url)) url = '/index.html';
 
     // eslint-disable-next-line standard/no-callback-literal
-    callback({ path: path.normalize(path.join(__dirname, '../hawk.garage/dist', url)) });
+    callback({ path: path.normalize(path.join(__dirname, '..', 'hawk.garage', 'dist', url)) });
   }, (error) => {
     if (error) {
       console.error('Failed to register protocol');
