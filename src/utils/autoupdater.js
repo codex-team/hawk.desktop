@@ -32,7 +32,7 @@ autoUpdater.on('update-downloaded', (updateInfo) => {
   log.log('Update is ready', updateInfo);
 
   /* Or force quit app and install update */
-  autoUpdater.quitAndInstall();
+  // autoUpdater.quitAndInstall();
 });
 
 /**
