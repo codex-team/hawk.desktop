@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: 14
 
-      - name: Make garage
-        run: yarn get-garage
+      - name: Get garage
+        run: yarn garage:init
 
       - name: Make envfile
         uses: ozaytsev86/create-env-file@v1
@@ -32,6 +32,9 @@ jobs:
           ENV_VUE_APP_API_ENDPOINT: ${{ secrets.VUE_APP_API_ENDPOINT }}
           ENV_VUE_APP_HAWK_TOKEN: ${{ secrets.VUE_APP_HAWK_TOKEN }}
           ENV_VUE_APP_CLOUDPAYMENTS_PUBLIC_ID: ${{ secrets.VUE_APP_CLOUDPAYMENTS_PUBLIC_ID }}
+
+      - name: Build garage
+        run: yarn garage:build
 
       - name: Build and release
         uses: samuelmeuli/action-electron-builder@v1
