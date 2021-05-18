@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron');
+const { app, shell, BrowserWindow, Menu } = require('electron');
+const electronDefaultMenu = require('electron-default-menu');
 
 const Logger = require('./utils/logger');
 const log = Logger.getLogger();
@@ -26,6 +27,11 @@ function createWindow() {
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+
+  const menu = electronDefaultMenu(app, shell);
+
+  // Set application menu
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
 }
 
 /**

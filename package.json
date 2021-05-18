@@ -1,19 +1,18 @@
 {
   "name": "hawk.desktop",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Desktop version of hawk.garage",
   "license": "UNLICENSED",
   "main": "./src/main.js",
   "scripts": {
+    "get-garage": "yarn garage:init && yarn garage:update && yarn garage:build",
     "start": "electron .",
-    "submodule:init": "git submodule update --init --recursive",
-    "submodule:build": "cd hawk.garage && yarn install && yarn build",
-    "submodule:update": "git submodule foreach git pull origin master",
-    "submodule:prepare": "yarn submodule:init && yarn submodule:update && yarn submodule:build",
+    "build": "rimraf dist/ && electron-builder",
+    "garage:init": "git submodule update --init --recursive",
+    "garage:build": "cd hawk.garage && yarn install && yarn build",
+    "garage:update": "git submodule foreach git pull origin master",
     "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --ext .js --fix",
-    "electron:prebuild": "rm -rf dist/ && yarn submodule:prepare",
-    "electron:build": "yarn electron:prebuild && electron-builder"
+    "lint:fix": "eslint . --ext .js --fix"
   },
   "devDependencies": {
     "electron": "^4.1.4",
@@ -24,8 +23,10 @@
     "lint-staged": "^8.1.5"
   },
   "dependencies": {
+    "electron-default-menu": "^1.0.2",
     "electron-is-dev": "^2.0.0",
     "electron-updater": "^4.3.8",
+    "rimraf": "^3.0.2",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.2"
   },
