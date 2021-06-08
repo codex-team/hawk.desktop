@@ -1,5 +1,6 @@
 const { app, shell, BrowserWindow, Menu } = require('electron');
 const electronDefaultMenu = require('electron-default-menu');
+const path = require('path');
 
 const Logger = require('./utils/logger');
 const log = Logger.getLogger();
@@ -16,8 +17,11 @@ function createWindow() {
     height: 800,
     minHeight: 800,
     frame: false,
+    transparent: true,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
     },
   });
 
@@ -35,6 +39,8 @@ function createWindow() {
 
   // Set application menu
   Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
+
+  // mainWindow.webContents.openDevTools();
 }
 
 /**
