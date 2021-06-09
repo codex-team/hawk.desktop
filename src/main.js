@@ -1,6 +1,5 @@
 const { app, shell, BrowserWindow, Menu } = require('electron');
 const electronDefaultMenu = require('electron-default-menu');
-const path = require('path');
 
 const Logger = require('./utils/logger');
 const log = Logger.getLogger();
