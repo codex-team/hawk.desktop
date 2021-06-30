@@ -1,18 +1,29 @@
-# hawk.desktop
+# Hawk Desktop
 
-> Desktop version of hawk.garage
+Cross-platform desktop app powered by Electron.
 
 ## How to start application
 
-1. Install dependencies
+Install dependencies
+
 ```
-yarn install
+yarn
 ```
-2. Prepare submodule
+
+Prepare Garage
+
 ```
-yarn submodule:prepare
+yarn garage
 ```
-3. Serve
+
+Run the app
+
 ```
 yarn start
+```
+
+Build a distro for the app if you need
+
+```
+yarn build
 ```

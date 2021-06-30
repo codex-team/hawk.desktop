@@ -5,9 +5,9 @@
   "license": "UNLICENSED",
   "main": "./src/main.js",
   "scripts": {
-    "get-garage": "yarn garage:init && yarn garage:update && yarn garage:build && yarn garage:inject-script",
     "start": "electron .",
     "build": "rimraf dist/ && electron-builder",
+    "garage": "yarn garage:init && yarn garage:update && yarn garage:build && yarn garage:inject-script",
     "garage:init": "git submodule update --init --recursive",
     "garage:build": "cd hawk.garage && yarn install && yarn build",
     "garage:update": "git submodule foreach git pull origin master",
