@@ -1,3 +1,8 @@
+/**
+ * Script for inserting HTML code to garage's index.html file
+ *
+ * @file
+ */
 const fs = require('fs');
 const path = require('path');
 
