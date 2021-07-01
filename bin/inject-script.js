@@ -82,6 +82,7 @@ const missingHTML = `
       border-radius: 50%;
 
       margin: 0 4px;
+      z-index: 9999;
     }
 
     #quit {
@@ -108,26 +109,28 @@ const missingHTML = `
   </div>
 
   <script>
-    const { remote } = require('electron');
-    const win = remote.BrowserWindow.getFocusedWindow();
+    const { BrowserWindow } = require('electron').remote;
+    const win = BrowserWindow.getFocusedWindow();
 
-    const minimize = document.querySelector("#minimize");
-    const maximize = document.querySelector("#maximize");
-    const quit = document.querySelector("#quit");
+    const minimize = document.getElementById("minimize");
+    const maximize = document.getElementById("maximize");
+    const quit = document.getElementById("quit");
+
+    console.log(minimize);
 
     minimize.addEventListener("click", () => {
-      win.minimize();
       console.log('minimize');
+      win.minimize();
     });
 
     maximize.addEventListener("click", () => {
-      win.setFullScreen(!win.isFullScreen());
       console.log('maximize');
+      win.setFullScreen(!win.isFullScreen());
     });
 
     quit.addEventListener("click", () => {
-      win.close();
       console.log('quit');
+      win.close();
     });
   </script>
 `;
