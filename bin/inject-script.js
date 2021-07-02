@@ -64,6 +64,8 @@ const missingHTML = `
       align-items: center;
       align-content: center;
       justify-content: flex-start;
+
+      z-index: 9998;
     }
 
     .titlebar-title {
@@ -82,6 +84,7 @@ const missingHTML = `
       border-radius: 50%;
 
       margin: 0 4px;
+
       z-index: 9999;
     }
 
@@ -93,10 +96,6 @@ const missingHTML = `
     }
     #maximize {
       background: #21ce5a;
-    }
-
-    .titlebar-button:hover {
-      cursor: pointer;
     }
   </style>
 
@@ -116,20 +115,15 @@ const missingHTML = `
     const maximize = document.getElementById("maximize");
     const quit = document.getElementById("quit");
 
-    console.log(minimize);
-
     minimize.addEventListener("click", () => {
-      console.log('minimize');
       win.minimize();
     });
 
     maximize.addEventListener("click", () => {
-      console.log('maximize');
       win.setFullScreen(!win.isFullScreen());
     });
 
     quit.addEventListener("click", () => {
-      console.log('quit');
       win.close();
     });
   </script>

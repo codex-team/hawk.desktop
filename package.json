@@ -16,7 +16,7 @@
     "lint:fix": "eslint . --ext .js --fix"
   },
   "devDependencies": {
-    "electron": "12",
+    "electron": "^13.1.4",
     "electron-builder": "^22.10.5",
     "eslint": "^7.26.0",
     "eslint-config-codex": "^1.6.1"

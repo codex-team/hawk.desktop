@@ -43,7 +43,7 @@ function createWindow() {
   // Set application menu
   Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
 
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 }
 
 /**
