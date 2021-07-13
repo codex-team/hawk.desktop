@@ -5,6 +5,9 @@
  */
 const fs = require('fs');
 const path = require('path');
+const postcss = require('postcss');
+const postcssNestedAncestors = require('postcss-nested-ancestors');
+const postcssNested = require('postcss-nested');
 
 /**
  * Path to index.html file from garage
@@ -30,7 +33,23 @@ if (!fs.existsSync(PATH_TO_INDEX_FILE_BACKUP)) {
  */
 const backupFileContent = fs.readFileSync(PATH_TO_INDEX_FILE_BACKUP, 'utf8');
 
-const BAR_HEIGHT = 21;
+const VERSION = require('../package.json').version;
+const OS = 'win';
+// const OS = 'mac';
+// const OS = 'linux';
+
+/**
+ * Create a missing HTML code to be injected
+ *
+ * @type postcss
+ */
+const rawStyles = fs.readFileSync(path.join(__dirname, 'styles', 'index.pcss'));
+const STYLES = postcss([
+  postcssNestedAncestors,
+  postcssNested,
+])
+  .process(rawStyles)
+  .css;
 
 /**
  * Create a missing HTML code to be injected
@@ -38,73 +57,16 @@ const BAR_HEIGHT = 21;
  * @type {string}
  */
 const missingHTML = `
-  <script>
-  </script>
-
   <style>
-    body {
-      margin-top: ${BAR_HEIGHT}px;
-    }
-
-    .titlebar {
-      -webkit-user-select: none;
-      -webkit-app-region: drag;
-
-      background: #1a1d26;
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      height: ${BAR_HEIGHT}px;
-
-      padding-left: 4px;
-
-      align-items: center;
-      align-content: center;
-      justify-content: flex-start;
-
-      z-index: 9998;
-    }
-
-    .titlebar-title {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      color: rgba(219, 230, 255, 0.6);
-    }
-
-    .titlebar-button {
-      -webkit-user-select: auto;
-      -webkit-app-region: no-drag;
-
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-
-      margin: 0 4px;
-
-      z-index: 9999;
-    }
-
-    #quit {
-      background: #ff5f5e;
-    }
-    #minimize {
-      background: #ffbc4f;
-    }
-    #maximize {
-      background: #21ce5a;
-    }
+    ${STYLES}
   </style>
 
-  <div class="titlebar">
-    <div class="titlebar-title">Hawk Desktop</div>
+  <div class="titlebar titlebar--${OS}">
+    <div class="titlebar-title"><b>Hawk Desktop</b> ${VERSION}</div>
 
-    <div id="quit" class="titlebar-button"></div>
-    <div id="minimize" class="titlebar-button"></div>
-    <div id="maximize" class="titlebar-button"></div>
+    <div id="quit" class="titlebar-button titlebar-button__${OS} titlebar-button__${OS}--quit"></div>
+    <div id="minimize" class="titlebar-button titlebar-button__${OS} titlebar-button__${OS}--minimize"></div>
+    <div id="maximize" class="titlebar-button titlebar-button__${OS} titlebar-button__${OS}--maximize"></div>
   </div>
 
   <script>
@@ -140,3 +102,8 @@ const newFileContent = backupFileContent.replace('<body>', `<body>${missingHTML}
  * Save a new index.html file
  */
 fs.writeFileSync(PATH_TO_INDEX_FILE, newFileContent, 'utf8');
+
+/**
+ * Success message
+ */
+console.log('Script was injected successfully!');

@@ -1,10 +1,6 @@
 const { app, shell, BrowserWindow, Menu } = require('electron');
 const electronDefaultMenu = require('electron-default-menu');
 
-try {
-  require('electron-reloader')(module);
-} catch (_) {}
-
 const Logger = require('./utils/logger');
 const log = Logger.getLogger();
 
