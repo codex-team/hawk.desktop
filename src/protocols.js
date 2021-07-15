@@ -9,8 +9,8 @@ module.exports = () => {
     /** Remove path to magic root dir from url */
     url = url.replace(path.parse(url).root, '');
 
-    /** If no 'static' at the start of path then return index.html */
-    if (!/^static/.test(url)) {
+    /** If file url is empty, load index.html file */
+    if (url === '') {
       url = '/index.html';
     }
 

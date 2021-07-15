@@ -36,6 +36,9 @@ jobs:
       - name: Build garage
         run: yarn garage:build
 
+      - name: Upgrade garage's index.html file
+        run: yarn garage:inject-script
+
       - name: Build and release
         uses: samuelmeuli/action-electron-builder@v1
         with:

@@ -1,0 +1,136 @@
+:root {
+  --app-topbar__height: 30px;
+
+  --app-topbar__win-icon-color: #dbe6ff;
+  --app-topbar__win-icon-thickness: 2px;
+}
+
+body {
+  margin-top: var(--app-topbar__height);
+}
+
+.titlebar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+
+  width: 100%;
+  height: var(--app-topbar__height);
+  padding: 0 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #1a1d26;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+
+  justify-content: flex-start;
+
+  &--mac {}
+
+  &--linux {}
+
+  &--win {
+    justify-content: flex-end;
+  }
+
+  &-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: rgba(219, 230, 255, 0.6);
+  }
+
+  &-button {
+    -webkit-user-select: auto;
+    -webkit-app-region: no-drag;
+
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    margin: 0 4px;
+
+    z-index: 9999;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__mac {
+      &--quit {
+        background: #ff5f5e;
+      }
+
+      &--minimize {
+        background: #ffbc4f;
+      }
+
+      &--maximize {
+        background: #21ce5a;
+      }
+    }
+
+    &__win {
+      margin-right: 13px;
+      margin-left: 0;
+      opacity: 0.7;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &--minimize {
+        order: 0;
+        margin-right: 16px;
+        width: 14px;
+
+        &:before {
+          position: absolute;
+          content: ' ';
+          height: var(--app-topbar__win-icon-thickness);
+          width: 100%;
+          background-color: var(--app-topbar__win-icon-color);
+        }
+      }
+
+      &--maximize {
+        order: 1;
+
+        &:before {
+          position: absolute;
+          content: ' ';
+          height: 100%;
+          width: 100%;
+          border: var(--app-topbar__win-icon-thickness) solid var(--app-topbar__win-icon-color);
+        }
+      }
+
+      &--quit {
+        order: 2;
+
+        &:before, &:after {
+          position: absolute;
+          content: ' ';
+          height: var(--app-topbar__win-icon-thickness);
+          width: 120%;
+          background-color: var(--app-topbar__win-icon-color);
+        }
+
+        &:before {
+          transform: rotate(45deg);
+        }
+
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}
