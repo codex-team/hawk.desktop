@@ -4,6 +4,7 @@ const path = require('path');
 module.exports = () => {
   // Used for redirecting request to index.html and handle static assets
   protocol.interceptFileProtocol('file', (req, callback) => {
+    console.log(req.url);
     let url = req.url.substr(8); // cut file://
 
     /** Remove path to magic root dir from url */
