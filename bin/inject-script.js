@@ -34,9 +34,12 @@ if (!fs.existsSync(PATH_TO_INDEX_FILE_BACKUP)) {
 const backupFileContent = fs.readFileSync(PATH_TO_INDEX_FILE_BACKUP, 'utf8');
 
 const VERSION = require('../package.json').version;
-const OS = 'win';
-// const OS = 'mac';
-// const OS = 'linux';
+
+/**
+ * Get OS name: linux, mac, win
+ * @type {string}
+ */
+const OS = require('../src/utils/get-platform')();
 
 /**
  * Create a missing HTML code to be injected
