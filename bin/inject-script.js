@@ -76,6 +76,8 @@ const missingHTML = `
     const { BrowserWindow } = require('electron').remote;
     const win = BrowserWindow.getFocusedWindow();
 
+    const OS = "${OS}";
+
     const minimize = document.getElementById("minimize");
     const maximize = document.getElementById("maximize");
     const quit = document.getElementById("quit");
@@ -85,7 +87,11 @@ const missingHTML = `
     });
 
     maximize.addEventListener("click", () => {
-      win.setFullScreen(!win.isFullScreen());
+      if (OS === 'win') {
+          win.isMaximized() ? win.unmaximize() : win.maximize();
+      } else {
+          win.setFullScreen(!win.isFullScreen());
+      }
     });
 
     quit.addEventListener("click", () => {
