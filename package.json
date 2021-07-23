@@ -9,7 +9,7 @@
     "build": "rimraf dist/ && electron-builder",
     "garage": "yarn garage:init && yarn garage:update && yarn garage:build && yarn garage:inject-script",
     "garage:init": "git submodule update --init --recursive",
-    "garage:update": "git submodule foreach git pull origin master",
+    "garage:update": "git submodule foreach git pull origin prod",
     "garage:build": "cd hawk.garage && yarn install && yarn build",
     "garage:inject-script": "node ./bin/inject-script.js",
     "garage:inject-script:watch": "nodemon --watch bin -e js,pcss ./bin/inject-script.js",
