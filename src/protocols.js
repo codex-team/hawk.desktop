@@ -4,18 +4,26 @@ const path = require('path');
 module.exports = () => {
   // Used for redirecting request to index.html and handle static assets
   protocol.interceptFileProtocol('file', (req, callback) => {
-    let url = req.url.substr(8); // cut file://
+    /**
+     * Removes 'file:///' protocol from url and returns filePath
+     */
+    let filePath = req.url.substring(8);
 
-    /** Remove path to magic root dir from url */
-    url = url.replace(path.parse(url).root, '');
+    /**
+     * Removes root from filePath
+     * On Windows it will remove drive name from path
+     */
+    filePath = filePath.replace(path.parse(filePath).root, '');
 
-    /** If no 'static' at the start of path then return index.html */
-    if (!/^static/.test(url)) {
-      url = '/index.html';
+    /**
+     * If filePath is empty, set path to 'index.html' file
+     */
+    if (filePath === '') {
+      filePath = 'index.html';
     }
 
     // eslint-disable-next-line
-    callback({ path: path.normalize(path.join(__dirname, '..', 'hawk.garage', 'dist', url)) });
+    callback({ path: path.normalize(path.join(__dirname, '..', 'hawk.garage', 'dist', filePath)) });
   }, (error) => {
     if (error) {
       console.error('Failed to register protocol');
