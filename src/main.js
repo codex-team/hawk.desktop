@@ -16,8 +16,11 @@ function createWindow() {
     height: 800,
     minHeight: 800,
     frame: false,
+    transparent: true,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
     },
   });
 
@@ -35,6 +38,8 @@ function createWindow() {
 
   // Set application menu
   Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
+
+  // mainWindow.webContents.openDevTools();
 }
 
 /**
