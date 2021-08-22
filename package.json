@@ -1,6 +1,6 @@
 {
   "name": "hawk.desktop",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Desktop version of hawk.garage",
   "license": "UNLICENSED",
   "main": "./src/main.js",
