@@ -6,7 +6,11 @@
   "main": "./src/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "rimraf dist/ && electron-builder",
+    "build": "rimraf dist/ && yarn electron:prebuild && yarn electron:build",
+    "electron:prebuild": "yarn electron:icons-gen",
+    "electron:icons-gen": "electron-icon-builder --input=./public/icons/app-icon.png --output=build --flatten && yarn electron:icons-gen:postrun",
+    "electron:icons-gen:postrun": "cp ./build/icons/icon.ico ./build && cp ./build/icons/icon.icns ./build && cp ./build/icons/1024x1024.png ./build/icon.png && rm -rf ./build/icons",
+    "electron:build": "electron-builder",
     "garage": "yarn garage:init && yarn garage:update && yarn garage:build && yarn garage:inject-script",
     "garage:init": "git submodule update --init --recursive",
     "garage:update": "git submodule foreach git pull origin prod",
@@ -19,6 +23,7 @@
   "devDependencies": {
     "electron": "^13.1.4",
     "electron-builder": "^22.10.5",
+    "electron-icon-builder": "^2.0.1",
     "eslint": "^7.26.0",
     "eslint-config-codex": "^1.6.1",
     "nodemon": "^2.0.12",
