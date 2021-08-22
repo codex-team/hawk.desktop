@@ -60,7 +60,8 @@
       cursor: pointer;
     }
 
-    &--blurred {
+    &__mac &--blurred,
+    &__linux &--blurred {
       background-color: #3c404b !important;
     }
 
@@ -135,7 +136,7 @@
         &:before, &:after {
           position: absolute;
           content: ' ';
-          height: var(--app-topbar__win-icon-thickness);
+          height: calc(var(--app-topbar__win-icon-thickness) * 0.9);
           width: 120%;
           background-color: var(--app-topbar__win-icon-color);
         }
