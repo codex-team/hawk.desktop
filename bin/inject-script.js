@@ -73,7 +73,7 @@ const missingHTML = `
   </div>
 
   <script>
-    const { BrowserWindow } = require('electron').remote;
+    const { app, BrowserWindow } = require('electron').remote;
     const win = BrowserWindow.getFocusedWindow();
 
     const OS = "${OS}";
@@ -81,6 +81,23 @@ const missingHTML = `
     const minimize = document.getElementById("minimize");
     const maximize = document.getElementById("maximize");
     const quit = document.getElementById("quit");
+
+    /**
+     * If window focused
+     */
+    app.on('browser-window-focus', (event, win) => {
+      minimize.classList.remove('titlebar-button--blurred');
+      maximize.classList.remove('titlebar-button--blurred');
+      quit.classList.remove('titlebar-button--blurred');
+    })
+    /**
+     * If window blurred
+     */
+    app.on('browser-window-blur', (event, win) => {
+      minimize.classList.add('titlebar-button--blurred');
+      maximize.classList.add('titlebar-button--blurred');
+      quit.classList.add('titlebar-button--blurred');
+    })
 
     minimize.addEventListener("click", () => {
       win.minimize();
