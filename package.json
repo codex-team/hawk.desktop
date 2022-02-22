@@ -1,6 +1,6 @@
 {
   "name": "hawk.desktop",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Desktop version of hawk.garage",
   "license": "UNLICENSED",
   "main": "./src/main.js",
@@ -13,7 +13,7 @@
     "electron:build": "electron-builder",
     "garage": "yarn garage:init && yarn garage:update && yarn garage:build && yarn garage:inject-script",
     "garage:init": "git submodule update --init --recursive",
-    "garage:update": "git submodule foreach git pull origin prod",
+    "garage:update": "git submodule foreach git reset --hard origin/prod",
     "garage:build": "cd hawk.garage && yarn install && yarn build",
     "garage:inject-script": "node ./bin/inject-script.js",
     "garage:inject-script:watch": "nodemon --watch bin -e js,pcss ./bin/inject-script.js",
