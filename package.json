@@ -1,6 +1,6 @@
 {
   "name": "hawk.desktop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Desktop version of hawk.garage",
   "license": "UNLICENSED",
   "main": "./src/main.js",
@@ -21,32 +21,30 @@
     "lint:fix": "eslint . --ext .js --fix"
   },
   "devDependencies": {
-    "electron": "^13.1.4",
-    "electron-builder": "^22.10.5",
+    "electron": "^28.0.0",
+    "electron-builder": "^22.14.13",
     "electron-icon-builder": "^2.0.1",
-    "eslint": "^7.26.0",
-    "eslint-config-codex": "^1.6.1",
-    "nodemon": "^2.0.12",
-    "postcss": "^8.3.5",
-    "postcss-nested": "^5.0.5",
+    "eslint": "^7.32.0",
+    "eslint-config-codex": "^1.9.2",
+    "nodemon": "^2.0.22",
+    "postcss": "^8.5.6",
+    "postcss-nested": "^5.0.6",
     "postcss-nested-ancestors": "^2.0.0"
   },
   "dependencies": {
     "electron-default-menu": "^1.0.2",
     "electron-is-dev": "^2.0.0",
-    "electron-updater": "^4.3.8",
+    "electron-updater": "^4.6.5",
     "rimraf": "^3.0.2",
-    "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.2"
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "build": {
     "appId": "so.hawk.desktop",
     "productName": "Hawk Desktop",
     "mac": {
-      "category": "public.app-category.reference"
-    },
-    "dmg": {
-      "title": "Hawk Desktop"
+      "category": "public.app-category.reference",
+      "target": "zip"
     },
     "files": [
       "**/*"
