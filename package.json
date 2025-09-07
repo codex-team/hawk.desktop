@@ -4,6 +4,9 @@
   "description": "Desktop version of hawk.garage",
   "license": "UNLICENSED",
   "main": "./src/main.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "electron .",
     "build": "rimraf dist/ && yarn electron:prebuild && yarn electron:build",
