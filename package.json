@@ -4,6 +4,9 @@
   "description": "Desktop version of hawk.garage",
   "license": "UNLICENSED",
   "main": "./src/main.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "electron .",
     "build": "rimraf dist/ && yarn electron:prebuild && yarn electron:build",
@@ -22,7 +25,7 @@
   },
   "devDependencies": {
     "electron": "^28.0.0",
-    "electron-builder": "^24.0.0",
+    "electron-builder": "^23.6.0",
     "electron-icon-builder": "^2.0.1",
     "eslint": "^7.32.0",
     "eslint-config-codex": "^1.9.2",

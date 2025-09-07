@@ -1,0 +1,45 @@
+name: Check build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-22.04, windows-latest]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.19.0
+
+      - name: Get node deps
+        run: yarn
+
+      - name: Get garage
+        run: yarn garage:init
+
+      - name: Make envfile with dummy values
+        uses: ozaytsev86/create-env-file@v1
+        with:
+          file-name: './hawk.garage/.env'
+          ENV_VUE_APP_API_ENDPOINT: 'https://api.example.com'
+          ENV_VUE_APP_HAWK_TOKEN: 'dummy-token-for-build-test'
+          ENV_VUE_APP_CLOUDPAYMENTS_PUBLIC_ID: 'dummy-cloudpayments-id'
+
+      - name: Build garage
+        run: yarn garage:build
+
+      - name: Upgrade garage's index.html file
+        run: yarn garage:inject-script
+
+      - name: Test build (without release)
+        run: yarn build
