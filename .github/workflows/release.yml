@@ -43,7 +43,7 @@ jobs:
         run: yarn garage:inject-script
 
       - name: Build (without release)
-        run: yarn build
+        run: yarn electron:prebuild && yarn electron:build --publish never
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
