@@ -65,6 +65,32 @@ jobs:
         with:
           path: dist/
 
+      - name: Delete existing release assets
+        run: |
+          # Get the release ID for the current tag
+          RELEASE_ID=$(gh api repos/${{ github.repository }}/releases/tags/${{ github.ref_name }} --jq '.id' 2>/dev/null || echo "")
+
+          if [ -n "$RELEASE_ID" ]; then
+            echo "Found existing release with ID: $RELEASE_ID"
+
+            # Get all assets for this release
+            ASSET_IDS=$(gh api repos/${{ github.repository }}/releases/$RELEASE_ID/assets --jq '.[].id' 2>/dev/null || echo "")
+
+            if [ -n "$ASSET_IDS" ]; then
+              echo "Deleting existing assets..."
+              for asset_id in $ASSET_IDS; do
+                echo "Deleting asset ID: $asset_id"
+                gh api -X DELETE repos/${{ github.repository }}/releases/assets/$asset_id
+              done
+            else
+              echo "No existing assets found"
+            fi
+          else
+            echo "No existing release found"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
